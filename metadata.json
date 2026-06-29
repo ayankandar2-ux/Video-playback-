@@ -1,0 +1,6 @@
+{
+  "name": "VLC Playit",
+  "description": "Advanced video player with local file scanning, subtitle synchronization, gestures, and smart media library.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
