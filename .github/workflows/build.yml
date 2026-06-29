@@ -24,7 +24,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          validate-wrappers: false
+          gradle-version: '9.3.1'
 
       - name: Create empty .env if missing
         run: touch .env
@@ -32,14 +32,8 @@ jobs:
       - name: Decode Debug Keystore
         run: tr -d '\r\n' < debug.keystore.base64 | base64 -d > debug.keystore
 
-      - name: Fix line endings and permissions for gradlew
-        run: |
-          tr -d '\r' < gradlew > gradlew.tmp
-          mv gradlew.tmp gradlew
-          chmod +x gradlew
-
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
 
       - name: Upload Debug APK Artifact
         uses: actions/upload-artifact@v4
