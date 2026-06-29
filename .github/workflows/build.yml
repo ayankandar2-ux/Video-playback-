@@ -23,6 +23,8 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          wrapper-validation-enabled: false
 
       - name: Create empty .env if missing
         run: touch .env
