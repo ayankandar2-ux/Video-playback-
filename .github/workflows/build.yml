@@ -28,10 +28,13 @@ jobs:
         run: touch .env
 
       - name: Decode Debug Keystore
-        run: base64 -d debug.keystore.base64 > debug.keystore
+        run: tr -d '\r\n' < debug.keystore.base64 | base64 -d > debug.keystore
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Fix line endings and permissions for gradlew
+        run: |
+          tr -d '\r' < gradlew > gradlew.tmp
+          mv gradlew.tmp gradlew
+          chmod +x gradlew
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
